@@ -60,4 +60,4 @@ You must have the following software installed:
 First, clone the project from GitHub:
 ```bash
 git clone [https://github.com/rajputps2519/data-compression-portal.git](https://github.com/rajputps2519/data-compression-portal.git)
-cd data-compression-portal git add README.md 
+cd data-compression-portal git add README.md  
