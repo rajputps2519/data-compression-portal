@@ -11,17 +11,19 @@ from algorithms.huffman import encode_huffman, decode_huffman
 
 # Create the Flask app
 app = Flask(__name__)
-# Enable Cross-Origin Resource Sharing
+
 # The URL of your live Vercel frontend application
 frontend_url = "https://data-compression-portal-plum.vercel.app"
 
 # Configure CORS to only allow requests from your specific frontend
 CORS(app, origins=[frontend_url])
+
 # Configure an upload folder
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -35,6 +37,7 @@ def upload_file():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         return jsonify({'message': 'File uploaded successfully', 'filename': filename})
+
 
 @app.route('/compress/<algorithm>/<filename>', methods=['POST'])
 def compress_file(algorithm, filename):
@@ -59,7 +62,6 @@ def compress_file(algorithm, filename):
 
     processing_time = time.time() - start_time
 
-    # Construct the compressed file name
     base, ext = os.path.splitext(filename)
     compressed_filename = f"{base}_{algorithm}_compressed{ext}"
     compressed_file_path = os.path.join(app.config['UPLOAD_FOLDER'], compressed_filename)
@@ -80,6 +82,7 @@ def compress_file(algorithm, filename):
         'processing_time': f'{processing_time:.4f} seconds'
     })
 
+
 @app.route('/decompress/<filename>', methods=['POST'])
 def decompress_file(filename):
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -89,7 +92,6 @@ def decompress_file(filename):
     with open(file_path, 'rb') as f:
         data = f.read()
     
-    # Determine algorithm from filename, e.g., "myfile_huffman_compressed.txt"
     try:
         parts = filename.rsplit('_', 2)
         base_name, algorithm, _ = parts
@@ -109,11 +111,8 @@ def decompress_file(filename):
         
     processing_time = time.time() - start_time
     
-    # Construct the decompressed file name
-    base, ext = os.path.splitext(filename)
-    # Reconstruct original name from "myfile_huffman_compressed.txt" to "myfile_decompressed.txt"
-    original_base, _, _ = base.rsplit('_', 2)
-    decompressed_filename = f"{original_base}_decompressed{ext}"
+    original_base, _, _ = os.path.splitext(filename)[0].rsplit('_', 2)
+    decompressed_filename = f"{original_base}_decompressed{os.path.splitext(filename)[1]}"
     decompressed_file_path = os.path.join(app.config['UPLOAD_FOLDER'], decompressed_filename)
     
     with open(decompressed_file_path, 'wb') as f:
@@ -124,6 +123,7 @@ def decompress_file(filename):
         'filename': decompressed_filename,
         'processing_time': f'{processing_time:.4f} seconds'
     })
+
 
 @app.route('/download/<filename>')
 def download_file(filename):
