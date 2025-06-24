@@ -1,0 +1,17 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node.js dependencies
+# This is the most important line!
+frontend/node_modules/
+
+# React build output
+frontend/build/
+
+# IDE / OS specific files
+.vscode/
+.DS_Store

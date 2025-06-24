@@ -1,0 +1,1 @@
+This is a test file for the data compression and decompression portal. The purpose of this test is to see how well the different algorithms, such as Huffman Coding and Run-Length Encoding, perform on a standard block of English text. Repetition is the key to good compression. Let's repeat some words. repeat repeat repeat. Let's see how this compresses.
