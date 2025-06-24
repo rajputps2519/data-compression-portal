@@ -12,8 +12,11 @@ from algorithms.huffman import encode_huffman, decode_huffman
 # Create the Flask app
 app = Flask(__name__)
 # Enable Cross-Origin Resource Sharing
-CORS(app)
+# The URL of your live Vercel frontend application
+frontend_url = "https://data-compression-portal-plum.vercel.app"
 
+# Configure CORS to only allow requests from your specific frontend
+CORS(app, origins=[frontend_url])
 # Configure an upload folder
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
