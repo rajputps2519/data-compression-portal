@@ -6,9 +6,7 @@
   </a>
 </p>
 
-<div align="center">
-  <img src="https://i.imgur.com/gKjG1rK.png" alt="Project Screenshot" width="800"/>
-</div>
+
 
 <p align="center">
   A full-stack web application built with Python (Flask) and React that allows users to compress and decompress files using various lossless algorithms.
