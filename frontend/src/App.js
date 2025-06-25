@@ -13,7 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [algorithm, setAlgorithm] = useState('rle');
 
-  const API_URL = 'http://127.0.0.1:5000';
+  const API_URL = 'https://data-compression-portal.onrender.com';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
