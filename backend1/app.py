@@ -16,7 +16,7 @@ app = Flask(__name__)
 frontend_url = "https://data-compression-portal-l78y.vercel.ap"
 
 # Configure CORS to only allow requests from your specific frontend
-CORS(app, origins=[frontend_url])
+CORS(app)
 
 # Configure an upload folder
 UPLOAD_FOLDER = 'uploads'
