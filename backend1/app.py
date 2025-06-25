@@ -13,7 +13,7 @@ from algorithms.huffman import encode_huffman, decode_huffman
 app = Flask(__name__)
 
 # The URL of your live Vercel frontend application
-frontend_url = "https://data-compression-portal-plum.vercel.app"
+frontend_url = "https://data-compression-portal-l78y.vercel.ap"
 
 # Configure CORS to only allow requests from your specific frontend
 CORS(app, origins=[frontend_url])
