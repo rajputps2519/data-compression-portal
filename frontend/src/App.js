@@ -10,7 +10,8 @@ function App() {
   const [processedFile, setProcessedFile] = useState(null);
   const [stats, setStats] = useState(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [compressing, setCompressing] = useState(false);
+  const [decompressing, setDecompressing] = useState(false);
   const [algorithm, setAlgorithm] = useState('rle');
 
   const API_URL = 'https://data-compression-portal.onrender.com';
@@ -33,7 +34,11 @@ function App() {
       return;
     }
 
-    setLoading(true);
+    if (action === 'compress') {
+      setCompressing(true);
+    } else {
+      setDecompressing(true);
+    }
     setError('');
     setProcessedFile(null);
     setStats(null);
@@ -72,7 +77,11 @@ function App() {
       setError(errorMessage);
       console.error(err);
     } finally {
-      setLoading(false);
+      if (action === 'compress') {
+        setCompressing(false);
+      } else {
+        setDecompressing(false);
+      }
     }
   };
 
@@ -80,6 +89,8 @@ function App() {
     if (!processedFile) return;
     window.open(`${API_URL}/download/${processedFile}`);
   };
+
+  const loading = compressing || decompressing;
 
   return (
     <div className="App">
@@ -102,16 +113,16 @@ function App() {
               <option value="huffman">Huffman Coding</option>
             </select>
             <button onClick={() => handleProcess('compress')} disabled={loading || !file}>
-              {loading ? 'Compressing...' : 'Compress'}
+              {compressing ? 'Compressing...' : 'Compress'}
             </button>
             <button onClick={() => handleProcess('decompress')} disabled={loading || !file}>
-              {loading ? 'Decompressing...' : 'Decompress'}
+              {decompressing ? 'Decompressing...' : 'Decompress'}
             </button>
           </div>
         </div>
 
         {error && <p className="error-message">{error}</p>}
-        {loading && <div className="loader"></div>}
+        {(compressing || decompressing) && <div className="loader"></div>}
 
         {stats && processedFile && (
           <div className="card results-card">
