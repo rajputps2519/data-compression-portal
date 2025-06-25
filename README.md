@@ -61,3 +61,5 @@ First, clone the project from GitHub:
 ```bash
 git clone [https://github.com/rajputps2519/data-compression-portal.git](https://github.com/rajputps2519/data-compression-portal.git)
 cd data-compression-portal git add README.md  
+```
+#### NOTE: There might be some issues in opening the site with IITR Wifi, please try using any other network
