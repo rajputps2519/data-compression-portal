@@ -1,7 +1,7 @@
 
 # Data Compression & Decompression Portal
 <p align="center">
-  <a href="https://data-compression-portal-plum.vercel.app" target="_blank">
+  <a href="https://data-compression-portal-l78y.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo">
   </a>
 </p>
